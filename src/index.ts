@@ -11,6 +11,8 @@ import toc from "markdown-it-table-of-contents";
 import footnote from "markdown-it-footnote";
 import { MathjaxEngine } from "./math/mathjax.js";
 import { mdmath } from "./math/mdmath.js";
+import { fence_custom } from "./code/fence-custom.js";
+
 export class MarkdownConverter {
   private readonly _mj: MathjaxEngine;
   private readonly _md: markdownIt;
@@ -28,6 +30,9 @@ export class MarkdownConverter {
       linkify: true,
       highlight: highlighterForMarkdownIt,
     });
+
+    md.renderer.rules.fence = fence_custom;
+  
     md.use(anchor)
       .use(cjkbreaks)
       .use(footnote)

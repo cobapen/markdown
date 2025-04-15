@@ -1,19 +1,14 @@
 /**
  * highlight.ts
  * 2023-11-20
- * provides a custom highlighter for the MarkdownIt (supports by default)
+ * provides a custom highlighter for MarkdownIt
  */
 import hljs from "highlight.js";
+import { InfoString } from "./info-string.js";
 
 function _debuglog(..._args: any[]) {
   // if (_debuglog.caller.name !== "") return;
   // console.log(...args);
-}
-
-/** Parses int but returns "undefined" on error */
-function toInt(n: string): number | undefined {
-  const x = parseInt(n, 10);
-  return isNaN(x) ? undefined : x;
 }
 
 /** Get digits of the number. e.g. 1000 => 4 */
@@ -26,53 +21,18 @@ function niceDec(n: number) {
   return n.toFixed(3);
 }
 
-/**
- * Parse markdown language and languageAttributes.
- *
- * CustomSpec: languageAttrs format is "{filename:lineNo}"
- *
- * @param {string} lang
- * @param {string} attrs
- * @returns
- */
-export function parseMarkdownLang(lang: string, attrs: string) {
-  const base = {
-    lang,
-    title: "",
-    line: "",
-  };
-  if (!attrs) return { ...base };
 
-  const r1 = /\{?(.*?):(\d*)\}?/.exec(attrs);
-
-  if (r1 === null) {
-    return { ...base };
-  } else {
-    return {
-      ...base,
-      lang,
-      title: r1[1],
-      line: r1[2],
-    };
-  }
-}
 
 /**
  * Highlight function with line number support
  *
  * @param code
- * @param args
+ * @param lang
+ * @param linestart
  * @returns
  */
-export function highlightWithLineNumber(
-  code: string,
-  args: { [x: string]: string },
-) {
+export function highlightWithLineNumber(code: string, lang: string, linestart?: number) {
   try {
-    args = args ?? {};
-    const lang = args.lang;
-    const lstart = toInt(args.line);
-
     /** convert if lang is specified + supported by highlight.js */
     if (lang && hljs.getLanguage(lang)) {
       /** do conversion */
@@ -93,9 +53,9 @@ export function highlightWithLineNumber(
        * - user-select: none
        * - width: ${numDigits}em
        */
-      if (lstart !== undefined) {
+      if (linestart !== undefined) {
         const lines = htmlLines.split("\n");
-        const elWidth = numDigits(lstart + lines.length) * 0.8;
+        const elWidth = numDigits(linestart + lines.length) * 0.8;
         const elStyle =
           "display:inline-block;" +
           "user-select:none;" +
@@ -104,7 +64,7 @@ export function highlightWithLineNumber(
           lines[i] =
             "<div class=\"line\">" +
             `<span class="line-no" style="${elStyle}">${
-              lstart + i
+              linestart + i
             }</span>${line}` +
             "</div>";
         });
@@ -112,19 +72,6 @@ export function highlightWithLineNumber(
 
         htmlLines = lines.join("");
       }
-
-      /**
-       * Filename (Title) is currently unsupported.
-       *
-       * This function returns the string for this part:
-       * <pre><code> HERE </code></pre>
-       *            ~~~~~~
-       *
-       * but the title element should be be placed:
-       * <pre><code>...</code> <div> HERE </div> </pre>
-       *                            ~~~~~~
-       * or elsewhere, which
-       */
       return htmlLines;
     } else {
       // no language , no highlighting.
@@ -145,36 +92,10 @@ export function highlightWithLineNumber(
  * @param attrs
  * @returns
  */
-export function highlighterForMarkdownIt(
-  str: string,
-  lang: string,
-  attrs: string,
-) {
+export function highlighterForMarkdownIt(str: string, lang: string, attrs: string) {
   _debuglog(lang ? lang : "(lang is empty or undefined)");
-  const hlArgs = parseMarkdownLang(lang, attrs);
-  _debuglog(hlArgs);
-  return highlightWithLineNumber(str, hlArgs);
+  const info = new InfoString(lang + " " + attrs);
+  _debuglog(info);
+  return highlightWithLineNumber(str, info.lang, info.linestart);
 }
 
-const runTest = false;
-if (runTest) {
-  _debuglog(toInt("1"));
-  _debuglog(toInt("10"));
-  _debuglog(toInt("100"));
-  _debuglog(toInt("100x"));
-  _debuglog(toInt("100x"));
-  _debuglog(toInt("10x0"));
-
-  _debuglog(numDigits(1));
-  _debuglog(numDigits(10));
-  _debuglog(numDigits(100));
-  _debuglog(numDigits(999));
-
-  _debuglog(parseMarkdownLang("cpp", ""));
-  _debuglog(parseMarkdownLang("cpp", "{main.cpp:10}"));
-  _debuglog(parseMarkdownLang("cpp", "{abc.cpp:10"));
-  _debuglog(parseMarkdownLang("cpp", "{:20}"));
-  _debuglog(parseMarkdownLang("cpp", "{hello world.cpp:30}"));
-
-  _debuglog(hljs.highlight("#include <iostream>", { language: "cpp" }).value);
-}
