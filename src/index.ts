@@ -13,11 +13,28 @@ import { MathjaxEngine } from "./math/mathjax.js";
 import { mdmath } from "./math/mdmath.js";
 import { fence_custom } from "./code/fence-custom.js";
 
+export interface Configuration {
+  /**
+   * Set "true" to display the title (if specified) of the fenced code block.
+   * The title is hidden by default, and user must explicitly override the style.
+   */
+  showCodeTitleByDefault: boolean;
+}
+
+export type Options = Partial<Configuration>;
+
+const defaultOptions: Configuration = {
+  showCodeTitleByDefault: false,
+};
+
 export class MarkdownConverter {
+  private readonly _config: Configuration;
   private readonly _mj: MathjaxEngine;
   private readonly _md: markdownIt;
 
-  constructor() {
+  constructor(option?: Options) {
+    const config = { ...defaultOptions, ...option };
+
     const mj = new MathjaxEngine({
       tex: {
         macros: {
@@ -42,12 +59,14 @@ export class MarkdownConverter {
         includeLevel: [2, 3],
       });
 
+    this._config = config;
     this._mj = mj;
     this._md = md;
   }
 
   public render(text: string): string {
-    return this._md.render(text);
+    const env = {...this._config}; // env object must s
+    return this._md.render(text, env);
   }
 
   public mathcss(): string {

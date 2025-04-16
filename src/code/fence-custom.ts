@@ -4,12 +4,16 @@ import Renderer from "markdown-it/lib/renderer.mjs";
 import Token from "markdown-it/lib/token.mjs";
 import { InfoString } from "./info-string.js";
 
+interface Env {
+  showCodeTitleByDefault?: boolean;
+}
+
 /**
  * Custom fence renderer for markdown-it.
  * 
  * see: markdown-it/lib/renderer.mjs
  */
-export function fence_custom(tokens: Token[], idx: number, options: Options, _env: any, slf: Renderer) {
+export function fence_custom(tokens: Token[], idx: number, options: Options, env: Env, slf: Renderer) {
   const token = tokens[idx];
   const info_str = token.info ? unescapeAll(token.info).trim() : "";
   
@@ -49,7 +53,10 @@ export function fence_custom(tokens: Token[], idx: number, options: Options, _en
 
 
     if (info.title.length > 0) {
-      return `<pre><code${slf.renderAttrs(tmpToken)}>${highlighted}</code><span class="title">${info.title}</span></pre>\n`;
+      const style = (env.showCodeTitleByDefault === true)
+        ? "" 
+        : " style=\"visibility:hidden;\"";
+      return `<pre><code${slf.renderAttrs(tmpToken)}>${highlighted}</code><span class="title"${style}>${info.title}</span></pre>\n`;
     }
 
     return `<pre><code${slf.renderAttrs(tmpToken)}>${highlighted}</code></pre>\n`;
