@@ -1,0 +1,82 @@
+
+:root {
+  --font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Segoe UI, BIZ UDPGothic, Meiryo, Hiragino Kaku Gothic ProN, sans-serif;
+  --font-size: 0.9rem;
+  --line-height: 1.625;
+  --background-color: #f0f0f0;
+  --link-color: #1560d2;
+  --primary-color: #005796;
+  --white-color: #f8f8f8;
+  --black-color: #333;
+  --text-color: #333;
+  --page-max-width: 960px;
+  --inline-code-background-color: #d8d8d8;
+  --codeblock-text-color: #abb2bf;
+  --codeblock-background-color: #282c34;
+}
+
+* {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  background-color: var(--background-color);
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  color: var(--text-color);
+}
+
+div#wrap {
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+pre {
+  position: relative;
+  color: var(--codeblock-text-color);
+  background: var(--codeblock-background-color);
+}
+
+code {
+  font-family: consolas, Menlo, "Liberation Mono", Courier, meiryo, arial, monospace;
+
+  /* styles when used alone, but also applied to code in pre-tag  */
+  display: inline-block;
+  white-space: nowrap;
+  padding: 0 0.25rem;
+  border-radius: 2px;
+  background-color: var(--inline-code-background-color);
+}
+
+pre > code {
+  display: block;
+  padding: 1em;
+  line-height: 1.2;
+  overflow-x: auto;
+  white-space: pre;
+  background-color: var(--codeblock-background-color);
+  overflow-x: auto;
+}
+
+pre > code[class^="language-"] {
+  font-family: consolas;
+  font-size: calc(16px * 0.85);
+}
+
+pre > span.title {
+  position: absolute;
+  visibility: visible !important;
+  top: 0;
+  right: 0;
+  display: inline-block;
+  padding: 0.25em 0.5em;
+  background-color: gray;
+  color: #f0f0f0;
+  border-bottom-left-radius: 0.5rem;
+}

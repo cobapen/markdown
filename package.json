@@ -8,6 +8,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
+    "build:doc": "tsc && node docs/build.js",
     "test": "vitest",
     "coverage": "vitest run --coverage"
   },
