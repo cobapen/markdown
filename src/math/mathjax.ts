@@ -18,7 +18,7 @@ import { TeX } from "mathjax-full/js/input/tex.js";
 import { mathjax } from "mathjax-full/js/mathjax.js";
 import { CHTML } from "mathjax-full/js/output/chtml.js";
 import { AllPackages } from "mathjax-full/js/input/tex/AllPackages.js";
-// import lodash from "lodash";
+import { merge } from "lodash-es";
 import { DOMAdaptor } from "mathjax-full/js/core/DOMAdaptor.js";
 
 type N = LiteElement;
@@ -128,11 +128,7 @@ export class MathjaxEngine {
   html: MathDocument<N, T, D>;
 
   constructor(option?: Partial<Options>) {
-    // this.option = lodash.merge({}, defaultOption, option) as Options;
-    this.option = {
-      ...defaultOption,
-      ...option,
-    } as Options;
+    this.option = merge({}, defaultOption, option);
 
     if (typeof this.option.tex?.packages === "string") {
       this.option.tex.packages = this.option.tex.packages.split(/\s*,\s*/);
