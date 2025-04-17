@@ -144,20 +144,23 @@ export class MathjaxEngine {
       OutputJax: chtml,
     });
 
-    html.addRenderAction("typeset", [
-      155,
-      (math: MathItem<N, T, D>, doc: MathDocument<N, T, D>) => {
-        const adaptor = doc.adaptor;
-        const text = adaptor.node("mjx-copytext", { "aria-hidden": true }, [
-          adaptor.text(math.math),
-        ]);
-        adaptor.append(math.typesetRoot, text);
-      },
-    ]);
+    html.addRenderAction("typeset", 155, renderDoc, renderMath);
 
     this.tex = tex;
     this.chtml = chtml;
     this.html = html;
+
+    function renderDoc(_doc: MathDocument<N, T, D>) {}
+    function renderMath(math: MathItem<N, T, D>, doc: MathDocument<N, T, D>) {
+      const adaptor = doc.adaptor;
+      const text = adaptor.node("mjx-copytext", { "aria-hidden": true }, [
+        adaptor.text(math.math),
+      ]);
+      adaptor.setStyle(text, "position", "absolute");
+      adaptor.setStyle(text, "visibility", "hidden");
+      adaptor.setStyle(math.typesetRoot, "position", "relative");
+      adaptor.append(math.typesetRoot, text);
+    }
   }
 
   /**
