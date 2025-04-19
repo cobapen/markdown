@@ -1,11 +1,18 @@
 {
   "name": "@cobapen/markdown",
-  "version": "0.0.0",
-  "description": "A markdown converter for the cobapen website",
-  "license": "ISC",
+  "version": "0.1.0",
+  "description": "A markdown converter for cobapen website",
+  "license": "MIT",
   "author": "yamavol",
+  "keywords": ["markdown"],
+  "private": true,
   "type": "module",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/**/*.js",
+    "dist/**/*.d.ts"
+  ],
   "scripts": {
     "build": "tsc",
     "build:doc": "tsc && node docs/build.js",
