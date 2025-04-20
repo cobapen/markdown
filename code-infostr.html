@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/math.css">
+  <link rel="stylesheet" href="css/highlight.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+  <script src="js/math.js" defer></script>
+  <title>cp-markdown: code-infostr.md</title>
+</head>
+<body>
+<div id="wrap">
+  <h1 id="fenced-code-block-(infostring)" tabindex="-1">Fenced Code Block (InfoString)</h1>
+<p>A fenced code block can have a <a href="https://spec.commonmark.org/0.31.2/#fenced-code-blocks:~:text=The%20line%20with%20the%20opening%20code%20fence%20may%20optionally%20contain%20some%20text%20following%20the%20code%20fence%3B%20this%20is%20trimmed%20of%20leading%20and%20trailing%20spaces%20or%20tabs%20and%20called%20the%20info%20string">info-string</a>. This information can be used for highlighting.</p>
+<pre><code>```c++ title=main.cpp startline=3
+//
+// code here
+// 
+```
+</code></pre>
+<h2 id="syntax" tabindex="-1">Syntax</h2>
+<p>The first word of the <code>info_string</code> is used to specify the language. If the language is supported, it will be syntax-highlighted using highlight.js.</p>
+<p>You may supply these in info_string for advanced rendering.</p>
+<ul>
+<li><code>title=&quot;main.cpp&quot;</code>: sets title tag.</li>
+<li><code>startline=3</code>: sets start line</li>
+<li><code>{main.cpp:10}</code>: sets title and line number</li>
+</ul>
+<h2 id="demo" tabindex="-1">Demo</h2>
+<p>c++ title=main.cpp</p>
+<pre><code class="language-c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span>* argv[])</span>
+</span>{
+    <span class="hljs-comment">// hello</span>
+    cout &lt;&lt; <span class="hljs-string">&quot;Hello World!&quot;</span> &lt;&lt; endl;
+    
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code><span class="title" style="visibility:hidden;">main.cpp</span></pre>
+<p>c++ title=main.cpp linestart=1</p>
+<pre><code class="language-c++"><div class="line"><span class="line-no" style="display:inline-block;user-select:none;width: 1.600em;">1</span><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="line-no" style="display:inline-block;user-select:none;width: 1.600em;">2</span><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;</div><div class="line"><span class="line-no" style="display:inline-block;user-select:none;width: 1.600em;">3</span></div><div class="line"><span class="line-no" style="display:inline-block;user-select:none;width: 1.600em;">4</span><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span>* argv[])</span></div><div class="line"><span class="line-no" style="display:inline-block;user-select:none;width: 1.600em;">5</span></span>{</div><div class="line"><span class="line-no" style="display:inline-block;user-select:none;width: 1.600em;">6</span>    <span class="hljs-comment">// hello</span></div><div class="line"><span class="line-no" style="display:inline-block;user-select:none;width: 1.600em;">7</span>    cout &lt;&lt; <span class="hljs-string">&quot;Hello World!&quot;</span> &lt;&lt; endl;</div><div class="line"><span class="line-no" style="display:inline-block;user-select:none;width: 1.600em;">8</span>    </div><div class="line"><span class="line-no" style="display:inline-block;user-select:none;width: 1.600em;">9</span>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</div><div class="line"><span class="line-no" style="display:inline-block;user-select:none;width: 1.600em;">10</span>}</div><div class="line"><span class="line-no" style="display:inline-block;user-select:none;width: 1.600em;">11</span></div></code><span class="title" style="visibility:hidden;">main.cpp</span></pre>
+<p>c++ {main.cpp:1}</p>
+<pre><code class="language-c++"><div class="line"><span class="line-no" style="display:inline-block;user-select:none;width: 1.600em;">1</span><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="line-no" style="display:inline-block;user-select:none;width: 1.600em;">2</span><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;</div><div class="line"><span class="line-no" style="display:inline-block;user-select:none;width: 1.600em;">3</span></div><div class="line"><span class="line-no" style="display:inline-block;user-select:none;width: 1.600em;">4</span><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span>* argv[])</span></div><div class="line"><span class="line-no" style="display:inline-block;user-select:none;width: 1.600em;">5</span></span>{</div><div class="line"><span class="line-no" style="display:inline-block;user-select:none;width: 1.600em;">6</span>    <span class="hljs-comment">// hello</span></div><div class="line"><span class="line-no" style="display:inline-block;user-select:none;width: 1.600em;">7</span>    cout &lt;&lt; <span class="hljs-string">&quot;Hello World!&quot;</span> &lt;&lt; endl;</div><div class="line"><span class="line-no" style="display:inline-block;user-select:none;width: 1.600em;">8</span>    </div><div class="line"><span class="line-no" style="display:inline-block;user-select:none;width: 1.600em;">9</span>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</div><div class="line"><span class="line-no" style="display:inline-block;user-select:none;width: 1.600em;">10</span>}</div><div class="line"><span class="line-no" style="display:inline-block;user-select:none;width: 1.600em;">11</span></div></code><span class="title" style="visibility:hidden;">main.cpp</span></pre>
+
+</div>
+<div style="position: fixed; top: 8px; right: 8px;">
+  <button onclick="history.back()" style="margin: 4px; padding: 8px; background-color: #007BFF; color: white; border: none; border-radius: 4px; cursor: pointer;">
+    Go Back
+  </button>
+  <button onclick="window.location.href='./index.html'" style="margin: 4px; padding: 8px; background-color: #28A745; color: white; border: none; border-radius: 4px; cursor: pointer;">
+    Top Page
+  </button>
+</div>
+</body>
+</html>

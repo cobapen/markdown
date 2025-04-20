@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/math.css">
+  <link rel="stylesheet" href="css/highlight.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+  <script src="js/math.js" defer></script>
+  <title>cp-markdown: code-highlight.md</title>
+</head>
+<body>
+<div id="wrap">
+  <h1 id="syntax-highlighting" tabindex="-1">Syntax Highlighting</h1>
+<p>no language (or text)</p>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main(int argc, char* argv[])
+{
+    // hello
+    cout &lt;&lt; &quot;Hello World!&quot; &lt;&lt; endl;
+    
+    return 0;
+}
+</code></pre>
+<p>c++</p>
+<pre><code class="language-c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span>* argv[])</span>
+</span>{
+    <span class="hljs-comment">// hello</span>
+    cout &lt;&lt; <span class="hljs-string">&quot;Hello World!&quot;</span> &lt;&lt; endl;
+    
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>csharp</p>
+<pre><code class="language-csharp"><span class="hljs-keyword">using</span> System;
+
+<span class="hljs-keyword">class</span> <span class="hljs-title">Program</span>
+{
+    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Main</span>(<span class="hljs-params"><span class="hljs-built_in">string</span>[] <span class="hljs-keyword">args</span></span>)</span>
+    {
+        <span class="hljs-comment">// hello</span>
+        Console.WriteLine(<span class="hljs-string">&quot;Hello World!&quot;</span>);
+    }
+}
+</code></pre>
+<p>rust</p>
+<pre><code class="language-rust"><span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() {
+    <span class="hljs-comment">// hello</span>
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Hello, World!&quot;</span>);
+}
+</code></pre>
+<p>go</p>
+<pre><code class="language-go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
+    <span class="hljs-comment">// hello</span>
+    fmt.Println(<span class="hljs-string">&quot;Hello, World!&quot;</span>)
+}
+</code></pre>
+<p>javascript</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// hello</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Hello, World!&quot;</span>);
+</code></pre>
+<p>python</p>
+<pre><code class="language-python"><span class="hljs-comment"># hello</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Hello, World!&quot;</span>)
+</code></pre>
+<p>java</p>
+<pre><code class="language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-comment">// hello</span>
+        System.out.println(<span class="hljs-string">&quot;Hello, World!&quot;</span>);
+    }
+}
+</code></pre>
+<p>ruby</p>
+<pre><code class="language-ruby"><span class="hljs-comment"># hello</span>
+puts <span class="hljs-string">&quot;Hello, World!&quot;</span>
+</code></pre>
+<p>php</p>
+<pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-comment">// hello</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;Hello, World!&quot;</span>;
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+
+</div>
+<div style="position: fixed; top: 8px; right: 8px;">
+  <button onclick="history.back()" style="margin: 4px; padding: 8px; background-color: #007BFF; color: white; border: none; border-radius: 4px; cursor: pointer;">
+    Go Back
+  </button>
+  <button onclick="window.location.href='./index.html'" style="margin: 4px; padding: 8px; background-color: #28A745; color: white; border: none; border-radius: 4px; cursor: pointer;">
+    Top Page
+  </button>
+</div>
+</body>
+</html>
