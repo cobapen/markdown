@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - main
-      - develop
 env:
   # Enable continuous integration mode for npm scripts
   CI: true 
