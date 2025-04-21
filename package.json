@@ -2,13 +2,20 @@
   "name": "@cobapen/markdown",
   "version": "0.1.0",
   "description": "A markdown converter for cobapen website",
+  "keywords": ["markdown"],
   "license": "MIT",
   "author": "yamavol",
-  "keywords": ["markdown"],
-  "private": true,
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "homepage": "https://github.com/cobapen/markdown#readme",
+  "bugs": {
+    "url": "https://github.com/cobapen/markdown/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cobapen/markdown.git"
+  },
   "files": [
     "dist/**/*.js",
     "dist/**/*.d.ts"

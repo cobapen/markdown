@@ -3,7 +3,7 @@
 
 A markdown converter for the cobapen website. It is based on [markdown-it](https://github.com/markdown-it/markdown-it) with custom features.
 
-npm package : `TBD`
+npm package: [`@cobapen/markdown`](https://www.npmjs.com/package/@cobapen/markdown)
 
 ## Features
 
@@ -15,13 +15,10 @@ npm package : `TBD`
 
 ## Documents
 
+- TBD
 
 
 ## Links
 
 - [GitHub](https://github.com/cobapen/markdown)
-- npm
-
-## Links
-
-- []()
+- [npm](https://www.npmjs.com/package/@cobapen/markdown)
