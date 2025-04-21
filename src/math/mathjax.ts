@@ -157,7 +157,8 @@ export class MathjaxEngine {
         adaptor.text(math.math),
       ]);
       adaptor.setStyle(text, "position", "absolute");
-      adaptor.setStyle(text, "visibility", "hidden");
+      adaptor.setStyle(text, "display", "none");
+      adaptor.setStyle(text, "width", "0");
       adaptor.setStyle(math.typesetRoot, "position", "relative");
       adaptor.append(math.typesetRoot, text);
     }
