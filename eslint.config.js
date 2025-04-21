@@ -4,9 +4,6 @@ import tsParser from "@typescript-eslint/parser";
 export default [
   {
     ignores: [
-      "build/",
-      "dist/",
-      "docs/",
       "node_modules/",
     ],
   },
