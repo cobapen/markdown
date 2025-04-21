@@ -187,7 +187,6 @@ describe("Check JavaScript String", () => {
     let match = regex.exec("\\\"12345\\\"");
     expect(match).toBeTruthy();
     if (match !== null) {
-      console.log(match);
       expect(match[0]).toBe("\\\"12345\\\"");
       expect(match[1]).toBeUndefined();
       expect(match[2]).toBe("\\\"12345\\\"");
