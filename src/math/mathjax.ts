@@ -87,7 +87,7 @@ interface CHTMLConfig {
   adaptiveCSS: boolean;
 }
 
-interface Options {
+export interface Options {
   inline: boolean;
   em: number;
   ex: number;
