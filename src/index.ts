@@ -49,7 +49,7 @@ const defaultOptions: Config = {
   }
 };
 
-export class MarkdownConverter {
+export class CMarkdown {
   private readonly _config: Config;
   private readonly _mj: MathjaxEngine;
   private readonly _md: markdownIt;

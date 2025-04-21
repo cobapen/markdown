@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { test, expect } from "vitest";
-import { MarkdownConverter } from "../../src/index.js";
+import { CMarkdown } from "../../src/index.js";
 import Mustache from "mustache";
 
 const inputFolder = path.resolve(__dirname, "./input");
@@ -20,7 +20,7 @@ test("Convert all markdown files in input folder", () => {
   const template = fs.readFileSync(templateFilePath, "utf-8");
   expect(fs.existsSync(templateFilePath)).toBe(true);
 
-  const md = new MarkdownConverter();
+  const md = new CMarkdown();
 
   const files = fs
     .readdirSync(inputFolder)

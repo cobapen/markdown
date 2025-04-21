@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { MarkdownConverter } from "../../src/index.js";
+import { CMarkdown } from "../../src/index.js";
 
 describe("Basic conversion", () => {
   it("test", () => {
-    const converter = new MarkdownConverter();
+    const converter = new CMarkdown();
     const text = "# Hello World";
     const result = converter.render(text);
     expect(result).toBe(

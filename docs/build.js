@@ -1,7 +1,7 @@
 import Mustache from "mustache";
 import fs from "node:fs";
 import path from "node:path";
-import { MarkdownConverter } from "../dist/index.js";
+import { CMarkdown } from "../dist/index.js";
 // use node v21 or higher
 const __dirname = import.meta.dirname;
 
@@ -29,7 +29,7 @@ const inputFiles = fs.readdirSync(sourceDir, {
 })
   .filter(x => x.isFile() && x.name.endsWith(".md"));
 
-const converter = new MarkdownConverter();
+const converter = new CMarkdown();
 
 inputFiles.forEach(file => {
   const filepath = path.join(file.parentPath, file.name);
