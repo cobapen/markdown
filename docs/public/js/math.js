@@ -13,9 +13,9 @@
       element.addEventListener("mousedown", ev => {
         if (ev instanceof MouseEvent && ev.button === LEFT) {
           copyToClipboard(tex);
-          enableClickFeedback(element);
         }
       });
+      enableClickFeedback(element);
       element.style.cursor = "pointer";
     }
 
