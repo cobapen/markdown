@@ -10,7 +10,6 @@ interface Options {
 }
 
 function defaultHandler(link: string, _env: any, _token: Token): string {
-  console.log(link);
   if (!link.startsWith("http") && link.endsWith(".md")) {
     return link.replace(/\.md$/, ".html");
   } else {
