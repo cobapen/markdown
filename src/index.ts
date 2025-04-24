@@ -12,6 +12,7 @@ import footnote from "markdown-it-footnote";
 import { MathjaxEngine, Options as MathOptions } from "./math/mathjax.js";
 import { mdmath } from "./math/mdmath.js";
 import { fence_custom } from "./code/fence-custom.js";
+import { replacelink } from "./link/replacelink.js";
 
 export interface Config {
   /**
@@ -77,6 +78,7 @@ export class CMarkdown {
       .use(cjkbreaks)
       .use(footnote)
       .use(deflist)
+      .use(replacelink)
       .use(mdmath(this._mj))
       .use(toc, {
         includeLevel: [2, 3],
