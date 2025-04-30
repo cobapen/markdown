@@ -1,18 +1,18 @@
 import markdownIt, { Options as MarkdownOptions } from "markdown-it";
-import { highlighterForMarkdownIt } from "./code/highlight.js";
 import anchor from "markdown-it-anchor";
 // @ts-ignore
 import cjkbreaks from "markdown-it-cjk-breaks";
 // @ts-ignore
 import deflist from "markdown-it-deflist";
 // @ts-ignore
-import toc from "markdown-it-table-of-contents";
-// @ts-ignore
 import footnote from "markdown-it-footnote";
+// @ts-ignore
+import toc from "markdown-it-table-of-contents";
+import { fence_custom } from "./code/fence-custom.js";
+import { highlighterForMarkdownIt } from "./code/highlight.js";
+import { replacelink } from "./link/replacelink.js";
 import { MathjaxEngine, Options as MathOptions } from "./math/mathjax.js";
 import { mdmath } from "./math/mdmath.js";
-import { fence_custom } from "./code/fence-custom.js";
-import { replacelink } from "./link/replacelink.js";
 
 export interface Config {
   /**

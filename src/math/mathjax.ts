@@ -7,19 +7,19 @@
  * https://github.com/mathjax/mathjax-v3
  * https://github.com/mathjax/MathJax-demos-node/blob/master/direct/tex2chtml
 */
-import { type LiteAdaptor, liteAdaptor} from "mathjax-full/js/adaptors/liteAdaptor.js";
+import { merge } from "lodash-es";
+import { type LiteDocument } from "mathjax-full/js/adaptors/lite/Document.js"; /* D */
 import { LiteElement } from "mathjax-full/js/adaptors/lite/Element.js"; /* N */
 import { type LiteText } from "mathjax-full/js/adaptors/lite/Text.js"; /* T */
-import { type LiteDocument } from "mathjax-full/js/adaptors/lite/Document.js"; /* D */
-import { type MathItem } from "mathjax-full/js/core/MathItem.js";
+import { type LiteAdaptor, liteAdaptor} from "mathjax-full/js/adaptors/liteAdaptor.js";
+import { DOMAdaptor } from "mathjax-full/js/core/DOMAdaptor.js";
 import { type MathDocument } from "mathjax-full/js/core/MathDocument.js";
+import { type MathItem } from "mathjax-full/js/core/MathItem.js";
 import { RegisterHTMLHandler } from "mathjax-full/js/handlers/html.js";
+import { AllPackages } from "mathjax-full/js/input/tex/AllPackages.js";
 import { TeX } from "mathjax-full/js/input/tex.js";
 import { mathjax } from "mathjax-full/js/mathjax.js";
 import { CHTML } from "mathjax-full/js/output/chtml.js";
-import { AllPackages } from "mathjax-full/js/input/tex/AllPackages.js";
-import { merge } from "lodash-es";
-import { DOMAdaptor } from "mathjax-full/js/core/DOMAdaptor.js";
 
 type N = LiteElement;
 type T = LiteText;
