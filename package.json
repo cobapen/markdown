@@ -22,6 +22,7 @@
   ],
   "scripts": {
     "build": "tsc",
+    "build:dist": "tsc --build tsconfig.dist.json",
     "build:doc": "tsc && node docs/build.js",
     "test": "vitest",
     "coverage": "vitest run --coverage",
