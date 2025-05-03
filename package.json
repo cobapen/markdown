@@ -2,7 +2,9 @@
   "name": "@cobapen/markdown",
   "version": "0.3.1",
   "description": "A markdown converter for cobapen website",
-  "keywords": ["markdown"],
+  "keywords": [
+    "markdown"
+  ],
   "license": "MIT",
   "author": "yamavol",
   "type": "module",
