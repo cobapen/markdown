@@ -20,6 +20,9 @@
     "dist/**/*.js",
     "dist/**/*.d.ts"
   ],
+  "engines": {
+    "node": ">=20.11.0 <21 || >=21.2.0"
+  },
   "scripts": {
     "build": "tsc",
     "build:dist": "tsc --build tsconfig.dist.json",
