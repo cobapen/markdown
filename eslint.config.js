@@ -5,6 +5,7 @@ import importPlugin from "eslint-plugin-import";
 export default [
   {
     ignores: [
+      "dist/",
       "node_modules/",
     ],
   },
