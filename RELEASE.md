@@ -1,6 +1,10 @@
 
 # Release Log
 
+## 0.4.0 (2025-05-19)
+
+- Add markdown-it-adv-table
+
 ## 0.3.1 (2025-04-25)
 
 - Disable debug log
