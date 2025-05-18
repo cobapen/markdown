@@ -2,4 +2,4 @@
 
 Add `[[toc]]` to generate table of contets.
 
-- [Sample](syntax.html)
+- [Sample](syntax.md)

@@ -7,11 +7,11 @@ npm package: [`@cobapen/markdown`](https://www.npmjs.com/package/@cobapen/markdo
 
 ## Features
 
-- [markdown-syntax](syntax.html)
-- [table-of-contents](toc.html)
-- [footnotes](footnotes.html)
-- [math support](math.html)
-- [code support](code.html)
+- [markdown-syntax](syntax.md)
+- [table-of-contents](toc.md)
+- [footnotes](footnotes.md)
+- [math support](math.md)
+- [code support](code.md)
 
 ## Documents
 

@@ -1,4 +1,4 @@
 # Fenced Code Block
 
-- [syntax highlight](code-highlight.html)
-- [info_string](code-infostr.html)
+- [syntax highlight](code-highlight.md)
+- [info_string](code-infostr.md)

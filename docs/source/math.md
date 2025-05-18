@@ -1,3 +1,3 @@
 # Math
 
-- [test](math-test.html)
+- [test](math-test.md)
