@@ -1,4 +1,5 @@
 import markdownIt, { Options as MarkdownOptions } from "markdown-it";
+import advTable from "markdown-it-adv-table";
 import anchor from "markdown-it-anchor";
 // @ts-ignore
 import cjkbreaks from "markdown-it-cjk-breaks";
@@ -79,6 +80,7 @@ export class CMarkdown {
       .use(footnote)
       .use(deflist)
       .use(replacelink)
+      .use(advTable)
       .use(mdmath(this._mj))
       .use(toc, {
         includeLevel: [2, 3],

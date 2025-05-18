@@ -12,6 +12,7 @@ npm package: [`@cobapen/markdown`](https://www.npmjs.com/package/@cobapen/markdo
 - [footnotes](footnotes.md)
 - [math support](math.md)
 - [code support](code.md)
+- [table support](table.md)
 
 ## Documents
 
