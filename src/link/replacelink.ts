@@ -1,7 +1,7 @@
-import { PluginWithOptions } from "markdown-it";
-import { StateCore } from "markdown-it/index.js";
-import { RuleCore } from "markdown-it/lib/parser_core.mjs";
-import Token from "markdown-it/lib/token.mjs";
+import type { PluginWithOptions } from "markdown-it";
+import type { RuleCore } from "markdown-it/lib/parser_core.mjs";
+import type StateCore from "markdown-it/lib/rules_core/state_core.mjs";
+import type Token from "markdown-it/lib/token.mjs";
 
 type ReplaceHandler = (link: string, env: any, token: Token) => string;
 

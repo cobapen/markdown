@@ -5,8 +5,8 @@
  */
 
 import katex from "katex";
-import { PluginSimple } from "markdown-it";
-import Token from "markdown-it/lib/token.mjs";
+import type { PluginSimple } from "markdown-it";
+import type Token from "markdown-it/lib/token.mjs";
 import { MathjaxEngine } from "./mathjax.js";
 import { math_block, math_inline } from "./mdparser.js";
 
