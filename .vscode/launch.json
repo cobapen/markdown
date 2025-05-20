@@ -13,7 +13,7 @@
             ],
             "program": "${workspaceFolder}/test/debug/index.js",
             "outFiles": [
-                "${workspaceFolder}/**/*.js"
+                "${workspaceFolder}/lib/**/*.js"
             ]
         }
     ]
