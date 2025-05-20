@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { CMarkdown } from "../../dist/index.js";
+import { CMarkdown } from "../../lib/index.js";
 const __dirname = import.meta.dirname;
 
 const inputFilePath = path.join(__dirname, "input.md");
