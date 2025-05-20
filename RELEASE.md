@@ -1,6 +1,11 @@
 
 # Release Log
 
+## 0.4.1 (2025-05-20)
+
+- Changed outDir from dist to lib
+- Updated eslint rules (no code change)
+
 ## 0.4.0 (2025-05-19)
 
 - Add markdown-it-adv-table
