@@ -1,6 +1,10 @@
 
 # Release Log
 
+## 0.4.2 (2025-05-20)
+
+- Fix package.json where no files were published
+
 ## 0.4.1 (2025-05-20)
 
 - Changed outDir from dist to lib
