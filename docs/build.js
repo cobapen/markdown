@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import Mustache from "mustache";
-import { CMarkdown } from "../dist/index.js";
+import { CMarkdown } from "../lib/index.js";
 // use node v21 or higher
 const __dirname = import.meta.dirname;
 
