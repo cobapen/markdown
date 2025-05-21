@@ -15,7 +15,7 @@
 <div id="wrap">
   <h1 id="fenced-code-block-(infostring)" tabindex="-1">Fenced Code Block (InfoString)</h1>
 <p>A fenced code block can have a <a href="https://spec.commonmark.org/0.31.2/#fenced-code-blocks:~:text=The%20line%20with%20the%20opening%20code%20fence%20may%20optionally%20contain%20some%20text%20following%20the%20code%20fence%3B%20this%20is%20trimmed%20of%20leading%20and%20trailing%20spaces%20or%20tabs%20and%20called%20the%20info%20string">info-string</a>. This information can be used for highlighting.</p>
-<pre><code>```c++ title=main.cpp startline=3
+<pre><code>```c++ title=main.cpp linestart=3
 //
 // code here
 // 
@@ -26,7 +26,7 @@
 <p>You may supply these in info_string for advanced rendering.</p>
 <ul>
 <li><code>title=&quot;main.cpp&quot;</code>: sets title tag.</li>
-<li><code>startline=3</code>: sets start line</li>
+<li><code>linestart=3</code>: sets start line</li>
 <li><code>{main.cpp:10}</code>: sets title and line number</li>
 </ul>
 <h2 id="demo" tabindex="-1">Demo</h2>

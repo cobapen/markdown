@@ -9,31 +9,52 @@
   <link rel="stylesheet" href="css/highlight.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
   <script src="js/math.js" defer></script>
-  <title>cp-markdown: index.md</title>
+  <title>cp-markdown: table.md</title>
 </head>
 <body>
 <div id="wrap">
-  <h1 id="cp-markdown" tabindex="-1">cp-markdown</h1>
-<p>A markdown converter for the cobapen website. It is based on <a href="https://github.com/markdown-it/markdown-it">markdown-it</a> with custom features.</p>
-<p>npm package: <a href="https://www.npmjs.com/package/@cobapen/markdown"><code>@cobapen/markdown</code></a></p>
-<h2 id="features" tabindex="-1">Features</h2>
+  <h1 id="table" tabindex="-1">Table</h1>
+<p>Supports custom tabke syntax for advanced table rendering</p>
 <ul>
-<li><a href="syntax.html">markdown-syntax</a></li>
-<li><a href="toc.html">table-of-contents</a></li>
-<li><a href="footnotes.html">footnotes</a></li>
-<li><a href="math.html">math support</a></li>
-<li><a href="code.html">code support</a></li>
-<li><a href="table.html">table support</a></li>
+<li>rowspan, colspan</li>
+<li>cell width</li>
+<li>horizontal align</li>
+<li>header-rows</li>
+<li>header-columns</li>
+<li>multiple blocks, nested documents in cells</li>
 </ul>
-<h2 id="documents" tabindex="-1">Documents</h2>
-<ul>
-<li>TBD</li>
-</ul>
-<h2 id="links" tabindex="-1">Links</h2>
-<ul>
-<li><a href="https://github.com/cobapen/markdown">GitHub</a></li>
-<li><a href="https://www.npmjs.com/package/@cobapen/markdown">npm</a></li>
-</ul>
+<table>
+<thead>
+<tr>
+<th rowspan="2"></th>
+<th colspan="2">Mars</th>
+<th colspan="2">Venusp</th>
+</tr>
+<tr>
+<th>Produced</th>
+<th>Sold</th>
+<th>Produced</th>
+<th>Sold</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Teddy Bears</th>
+<td>$50,000</td>
+<td>$30,000</td>
+<td>$100,000</td>
+<td>$80,000</td>
+</tr>
+<tr>
+<th>Board Games</th>
+<td>$10,000</td>
+<td>$5,000</td>
+<td>$12,000</td>
+<td>$9,000</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://www.w3.org/WAI/tutorials/tables/irregular/">https://www.w3.org/WAI/tutorials/tables/irregular/</a></p>
 
 </div>
 <div style="position: fixed; top: 8px; right: 8px;">
