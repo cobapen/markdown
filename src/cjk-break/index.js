@@ -1,5 +1,7 @@
 /// markdown-it-cjk-break | 2.0.0 | MIT License
 /// https://github.com/markdown-it/markdown-it-cjk-breaks
+///
+/// Modified by Yamavol for bugfix.
 import { eastAsianWidthType } from "get-east-asian-width";
 
 function is_surrogate (c1, c2) {
@@ -23,6 +25,7 @@ function process_inlines (tokens) {
 
     for (let j = i - 1; j >= 0; j--) {
       if (tokens[j].type !== "text") continue;
+      if (tokens[j].content.length === 0) continue;
 
       const c1 = tokens[j].content.charCodeAt(tokens[j].content.length - 2);
       const c2 = tokens[j].content.charCodeAt(tokens[j].content.length - 1);
@@ -33,6 +36,7 @@ function process_inlines (tokens) {
 
     for (let j = i + 1; j < tokens.length; j++) {
       if (tokens[j].type !== "text") continue;
+      if (tokens[j].content.length === 0) continue;
 
       const c1 = tokens[j].content.charCodeAt(0);
       const c2 = tokens[j].content.charCodeAt(1);
