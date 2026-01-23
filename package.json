@@ -35,6 +35,7 @@
     "lint:fix": "eslint src --fix"
   },
   "dependencies": {
+    "@mathjax/src": "^4.1.0",
     "highlight.js": "^11.11.1",
     "katex": "^0.16.27",
     "lodash-es": "^4.17.23",
@@ -44,8 +45,7 @@
     "markdown-it-cjk-breaks": "file:src/cjk-break",
     "markdown-it-deflist": "^3.0.0",
     "markdown-it-footnote": "^4.0.0",
-    "markdown-it-table-of-contents": "^1.1.0",
-    "mathjax-full": "^3.2.2"
+    "markdown-it-table-of-contents": "^1.1.0"
   },
   "devDependencies": {
     "@cobapen/eslint-config": "^0.5.0",
