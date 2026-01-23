@@ -1,7 +1,7 @@
-import { CpMarkdown } from "@cobapen/markdown";
 import process from "process";
+import { CMarkdown } from "@cobapen/markdown";
 
-const converter = new CpMarkdown({
+const converter = new CMarkdown({
   showCodeTitleByDefault: true,
   markdown: {
   },
