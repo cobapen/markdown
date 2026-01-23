@@ -43,6 +43,9 @@ const defaultOptions: Config = {
     highlight: highlighterForMarkdownIt,
   },
   math: {
+    output: {
+      font: "mathjax-newcm"
+    },
     tex: {
       macros: {
         bm: ["\\boldsymbol{#1}", 1],
