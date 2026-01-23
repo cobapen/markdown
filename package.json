@@ -35,6 +35,7 @@
     "lint:fix": "eslint src --fix"
   },
   "dependencies": {
+    "@mathjax/mathjax-stix2-font": "^4.1.0",
     "@mathjax/src": "^4.1.0",
     "highlight.js": "^11.11.1",
     "katex": "^0.16.27",
