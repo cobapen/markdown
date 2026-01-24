@@ -88,6 +88,7 @@ const fontNames = <const>[
   "mathjax-newcm",
   "mathjax-stix2"
 ];
+const defaultFontName = fontNames[0];
 type FontName = typeof fontNames[number];
 function isFontName(name: string): name is FontName {
   return fontNames.includes(name as FontName);
@@ -229,7 +230,7 @@ const defaultMathOption: Options = {
   output: {
     scale: 1.21, // magic # chosen which look nice for me
     exFactor: 5,
-    font: "mathjax-newcm",
+    font: defaultFontName,
   },
   chtml: {
     adaptiveCSS: true,
@@ -341,7 +342,7 @@ function initOption(opt?: Partial<Options>): Options {
   if (option.output?.font !== undefined && typeof option.output.font === "string") {
     let name = option.output.font.trim();
     if (name === "default") {
-      name = "mathjax-newcm";
+      name = defaultFontName;
     }
     if (isFontName(name)) {
       if (option.output!.fontData === undefined) {
