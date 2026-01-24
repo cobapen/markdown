@@ -1,6 +1,11 @@
 
 # Release Log
 
+## 0.5.1 (2026-01-24)
+
+- Fix: eslint rule violation
+- Fix: removed mathjax helper script from documentation
+
 ## 0.5.0 (2026-01-24)
 
 - BugFix: cjk-break plugin crashed on some markdown syntax
