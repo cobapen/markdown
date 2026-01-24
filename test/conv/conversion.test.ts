@@ -1,8 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
-import { test, expect } from "vitest";
-import { CMarkdown } from "../../src/index.js";
 import Mustache from "mustache";
+import { expect, test } from "vitest";
+import { CMarkdown } from "../../src/index.js";
 
 const inputFolder = path.resolve(__dirname, "./input");
 const outputFolder = path.resolve(__dirname, "./output");
