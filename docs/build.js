@@ -50,4 +50,4 @@ inputFiles.forEach(file => {
 
 
 const stylesheet = converter.mathcss();
-fs.writeFileSync(path.join(outputDir, "css/math.css"), stylesheet, "utf8");
+fs.writeFileSync(mathcssFile, stylesheet, "utf8");
