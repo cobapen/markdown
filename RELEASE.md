@@ -1,6 +1,11 @@
 
 # Release Log
 
+## 0.5.2 (2026-01-24)
+
+- Fix: cjk-break needed to be non-local package
+- Change dependency: use "meaw" for east-asian-width check
+
 ## 0.5.1 (2026-01-24)
 
 - Fix: eslint rule violation
