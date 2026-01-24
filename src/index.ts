@@ -2,13 +2,12 @@ import markdownIt, { Options as MarkdownOptions } from "markdown-it";
 import advTable from "markdown-it-adv-table";
 import anchor from "markdown-it-anchor";
 // @ts-ignore
-import cjkbreaks from "markdown-it-cjk-breaks";
-// @ts-ignore
 import deflist from "markdown-it-deflist";
 // @ts-ignore
 import footnote from "markdown-it-footnote";
 // @ts-ignore
 import toc from "markdown-it-table-of-contents";
+import { cjk_break } from "./cjk-break/cjk-break.js";
 import { fence_custom } from "./code/fence-custom.js";
 import { highlighterForMarkdownIt } from "./code/highlight.js";
 import { replacelink } from "./link/replacelink.js";
@@ -79,7 +78,7 @@ export class CMarkdown {
   public setup(md: markdownIt) {
     md.renderer.rules.fence = fence_custom;
     md.use(anchor)
-      .use(cjkbreaks)
+      .use(cjk_break)
       .use(footnote)
       .use(deflist)
       .use(replacelink)

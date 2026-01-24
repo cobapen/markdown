@@ -42,10 +42,10 @@
     "markdown-it": "^14.1.0",
     "markdown-it-adv-table": "^0.1.2",
     "markdown-it-anchor": "^9.2.0",
-    "markdown-it-cjk-breaks": "file:src/cjk-break",
     "markdown-it-deflist": "^3.0.0",
     "markdown-it-footnote": "^4.0.0",
-    "markdown-it-table-of-contents": "^1.1.0"
+    "markdown-it-table-of-contents": "^1.1.0",
+    "meaw": "^10.0.0"
   },
   "devDependencies": {
     "@cobapen/eslint-config": "^0.5.0",
