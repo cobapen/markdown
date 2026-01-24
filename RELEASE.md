@@ -1,6 +1,11 @@
 
 # Release Log
 
+## 0.5.3 (2026-01-25)
+
+- Fix: mathjax may crash if asyncLoader is not used.
+- Added method to wait for MathJaxEngine to complete
+
 ## 0.5.2 (2026-01-24)
 
 - Fix: cjk-break needed to be non-local package

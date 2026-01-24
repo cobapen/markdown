@@ -1,6 +1,6 @@
 {
   "name": "@cobapen/markdown",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "A markdown converter for cobapen website",
   "keywords": [
     "markdown"
