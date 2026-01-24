@@ -4,7 +4,7 @@
  * provides a custom highlighter for MarkdownIt
  */
 // import hljs from "highlight.js";
-import hljs from "./highlight-custom.js" // lightweight version.
+import hljs from "./highlight-custom.js"; // lightweight version.
 import { InfoString } from "./info-string.js";
 
 function _debuglog(..._args: any[]) {
