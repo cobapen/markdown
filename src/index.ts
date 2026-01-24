@@ -101,6 +101,14 @@ export class CMarkdown {
   }
 
   /**
+   * Wait for MathJax to finish initialization.
+   * (For normal usage, this can be skipped)
+   **/
+  async waitMathInit(): Promise<void> {
+    return this._mj.waitInit();
+  }
+
+  /**
    * Returns the MathJax CSS.
    * @returns 
    */
