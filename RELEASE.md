@@ -1,6 +1,13 @@
 
 # Release Log
 
+## 0.5.0 (2026-01-24)
+
+- BugFix: cjk-break plugin crashed on some markdown syntax
+- Removed some hljs languages to reduce bundled size
+- Upgraded MathJax to v4.1
+- Updated dependencies
+
 ## 0.4.2 (2025-05-20)
 
 - Fix package.json where no files were published
