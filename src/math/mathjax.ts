@@ -27,8 +27,6 @@ import { mathjax } from "@mathjax/src/js/mathjax.js";
 import { CHTML } from "@mathjax/src/js/output/chtml.js";
 import { type DeepPartial, merge } from "../utils/merge.js";
 
-// Import Font
-
 // Import the needed TeX Packages
 import "@mathjax/src/js/input/tex/base/BaseConfiguration.js";
 import "@mathjax/src/js/input/tex/ams/AmsConfiguration.js";
@@ -103,11 +101,18 @@ interface AnyObject {
   [x: string]: any;
 }
 
-export interface Options {
+export interface Options extends DeepPartial<EngineOptions> {
   loader?: DeepPartial<LoaderOptions>;
   tex?: DeepPartial<TexInputOptions>;
   output?: DeepPartial<OutputOptions>;
   chtml?: DeepPartial<CHTMLOptions>;
+}
+
+interface EngineOptions {
+  // Disable MathJax to load extra resources. Default: true.
+  // MathJax is async since v4. To use extra resources, Set this to false,
+  // and await `MathJaxEngine.waitInit()` after instantiation. 
+  noAsyncLoad: boolean;
 }
 
 interface LoaderOptions {
@@ -195,7 +200,7 @@ interface OutputOptions {
 interface CHTMLOptions  {
   matchFontHeight: boolean;
   fontURL: string;
-  dynamicPrefix: string
+  dynamicPrefix: string;
   adaptiveCSS: boolean;
 }
 
@@ -224,6 +229,7 @@ const MATHJAX_DEFAULT_FONT_URL = (name: FontName) =>
   `https://cdn.jsdelivr.net/npm/@mathjax/${name}-font@4/chtml/woff2`;
 
 const defaultMathOption: Options = {
+  noAsyncLoad: true,
   tex: {
     packages: packageList,
   },
@@ -253,6 +259,7 @@ const defaultConvertOption: ConvertOptions = {
  * in your HTML document to render the equation properly.
  */
 export class MathjaxEngine {
+  private _initStatus: Promise<void> | null = null;
   option: Options;
   adaptor: LiteAdaptor;
   tex: TeX<N, T, D>;
@@ -270,6 +277,11 @@ export class MathjaxEngine {
       ...this.option.output,
       ...this.option.chtml,
     });
+  
+    if (this.option.noAsyncLoad !== true) {
+      this._initStatus = this.asyncInit(chtml);
+    }
+
     const html = mathjax.document("", {
       InputJax: tex,
       OutputJax: chtml,
@@ -295,21 +307,29 @@ export class MathjaxEngine {
     }
   }
 
+  /** Instruct MathJax to load async resources */
+  private async asyncInit(chtml: CHTML<N,T,D>): Promise<void> {
+    await import("@mathjax/src/js/util/asyncLoad/esm.js");
+    await chtml.font.loadDynamicFiles();
+  };
+
+  /** Wait async loader to complete */
+  async waitInit(): Promise<void> {
+    if (this._initStatus) {
+      await this._initStatus;
+      this._initStatus = null;
+    }
+  }
+
   /**
    * convert TeX input to CHTML.
    *
-   * @param tex       input string
-   * @param override  parameter to override the defaults, if you wish to
+   * @param tex     input string
+   * @param option  parameter to override the defaults, if you wish to
    * @returns
    */
-  convert(tex: string, override?: Partial<ConvertOptions>): string {
-    const node = this.html.convert(tex, {
-      display: !(override?.inline ?? defaultConvertOption.inline),
-      em: override?.em ?? defaultConvertOption.em,
-      ex: override?.ex ?? defaultConvertOption.ex,
-      containerWidth: override?.width ?? defaultConvertOption.width,
-      scale: 1.0,
-    });
+  convert(tex: string, option?: Partial<ConvertOptions>): string {
+    const node = this.html.convert(tex, convOption(option));
     if (node instanceof LiteElement) {
       return this.adaptor.outerHTML(node);
     } else {
@@ -354,5 +374,23 @@ function initOption(opt?: Partial<Options>): Options {
       }
     }
   }
+  // If adaptiveCSS is false, noAsyncLoad must be disabled
+  if (option.chtml?.adaptiveCSS !== true) {
+    if (option.noAsyncLoad) {
+      console.warn("[MathjaxEngine] adaptiveCSS is disabled, so noAsyncLoad is forced to false.");
+    }
+    option.noAsyncLoad = false;
+  }
   return option;
+}
+
+
+function convOption(option?: Partial<ConvertOptions>): {[key: string]: any} {
+  return {
+    display: !(option?.inline ?? defaultConvertOption.inline),
+    em: option?.em ?? defaultConvertOption.em,
+    ex: option?.ex ?? defaultConvertOption.ex,
+    containerWidth: option?.width ?? defaultConvertOption.width,
+    scale: 1.0,
+  };
 }
