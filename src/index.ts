@@ -24,14 +24,10 @@ export interface Config {
   /** custom handler to rewrite links */
   linkRewrite?: ReplaceHandler;
 
-  /**
-   * MarkdownIt options
-   */
+  /** MarkdownIt options */
   markdown: Partial<MarkdownOptions>;
 
-  /**
-   * MathJax options
-   */
+  /** MathJax options */
   math: Partial<MathOptions>;
 }
 
@@ -118,10 +114,7 @@ export class CMarkdown {
     return this._mj.waitInit();
   }
 
-  /**
-   * Returns the MathJax CSS.
-   * @returns 
-   */
+  /** Return the MathJax CSS. */
   public mathcss(): string {
     return this._mj.stylesheet();
   }
