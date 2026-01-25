@@ -3,13 +3,13 @@ import type { RuleCore } from "markdown-it/lib/parser_core.mjs";
 import type StateCore from "markdown-it/lib/rules_core/state_core.mjs";
 import type Token from "markdown-it/lib/token.mjs";
 
-type ReplaceHandler = (link: string, env: any, token: Token) => string;
+export type ReplaceHandler = (link: string, env: any, token: Token) => string;
 
-interface Options {
+export interface Options {
   replace: ReplaceHandler;
 }
 
-function defaultHandler(link: string, _env: any, _token: Token): string {
+export function defaultHandler(link: string, _env: any, _token: Token): string {
   if (!link.startsWith("http") && link.endsWith(".md")) {
     return link.replace(/\.md$/, ".html");
   } else {
@@ -25,6 +25,23 @@ function replaceAttr(token: Token, attrName: string, handler: ReplaceHandler, en
   });
 }
 
+function replaceHtmlAttr(token: Token, handler: ReplaceHandler, env: any) {
+  // List of attributes that may contain URIs.
+  // https://html.spec.whatwg.org/multipage/indices.html#attributes-1
+  // https://stackoverflow.com/questions/2725156/
+  const regex = /(href|src)\s*=\s*["']([^"']+)["']/g;
+  
+  let content = token.content;
+  let match = regex.exec(content);
+  while (match !== null) {
+    const before = match[2];
+    const replaced = handler(before, env, token);
+    content = content.replace(before, replaced);
+
+    match = regex.exec(content);
+  }
+  token.content = content;
+}
 
 function getHandler(option?: Options): RuleCore {
   const replaceFn = option?.replace || defaultHandler;
@@ -39,7 +56,13 @@ function getHandler(option?: Options): RuleCore {
           else if (childToken.type == "image") {
             replaceAttr(childToken, "src", replaceFn, state.env);
           }
+          else if (childToken.type == "html_inline") {
+            replaceHtmlAttr(childToken, replaceFn, state.env);
+          }
         });
+      }
+      else if (token.type === "html_block") {
+        replaceHtmlAttr(token, replaceFn, state.env);
       }
     });
   };

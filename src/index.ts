@@ -10,7 +10,7 @@ import toc from "markdown-it-table-of-contents";
 import { cjk_break } from "./cjk-break/cjk-break.js";
 import { fence_custom } from "./code/fence-custom.js";
 import { highlighterForMarkdownIt } from "./code/highlight.js";
-import { replacelink } from "./link/replacelink.js";
+import { ReplaceHandler, replacelink } from "./link/replacelink.js";
 import { MathjaxEngine, Options as MathOptions } from "./math/mathjax.js";
 import { mdmath } from "./math/mdmath.js";
 
@@ -21,6 +21,9 @@ export interface Config {
    */
   showCodeTitleByDefault: boolean;
 
+  /** custom handler to rewrite links */
+  linkRewrite?: ReplaceHandler;
+
   /**
    * MarkdownIt options
    */
@@ -30,6 +33,11 @@ export interface Config {
    * MathJax options
    */
   math: Partial<MathOptions>;
+}
+
+export interface RenderOptions {
+  /* Set origin of the markdown file, if it has one. */
+  file: string;
 }
 
 export type Options = Partial<Config>;
@@ -81,7 +89,9 @@ export class CMarkdown {
       .use(cjk_break)
       .use(footnote)
       .use(deflist)
-      .use(replacelink)
+      .use(replacelink, { 
+        replace: this._config.linkRewrite,
+      })
       .use(advTable)
       .use(mdmath(this._mj))
       .use(toc, {
@@ -95,8 +105,8 @@ export class CMarkdown {
    * @param text markdown text
    * @returns html text
    */
-  public render(text: string): string {
-    const env = {...this._config}; // env object must s
+  public render(text: string, opt?: Partial<RenderOptions>): string {
+    const env = { ...opt }; // create new env per call
     return this._md.render(text, env);
   }
 
