@@ -1,6 +1,12 @@
 
 # Release Log
 
+## 0.6.0 (2026-01-25)
+
+- Added option to modify relaceLink handler
+- Added argument to set per-render options
+- Changed to apply replaceLink to HTML tokens as well.
+
 ## 0.5.3 (2026-01-25)
 
 - Fix: mathjax may crash if asyncLoader is not used.
