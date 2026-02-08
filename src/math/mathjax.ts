@@ -11,7 +11,6 @@
  * https://docs.mathjax.org/en/v4.1/upgrading/whats-new-4.0/breaking.html
 */
 import { MathJaxNewcmFont } from "@mathjax/mathjax-newcm-font/mjs/chtml.js";
-import { MathJaxStix2Font } from "@mathjax/mathjax-stix2-font/mjs/chtml.js";
 // @ts-ignore: no d.ts file
 import { source as mjsource } from "@mathjax/src/components/mjs/source.js";
 import { type LiteDocument } from "@mathjax/src/js/adaptors/lite/Document.js";
@@ -84,7 +83,6 @@ type D = LiteDocument;
 // MathJax v4 font support -----------------------------------------------
 const fontNames = <const>[
   "mathjax-newcm",
-  "mathjax-stix2"
 ];
 const defaultFontName = fontNames[0];
 type FontName = typeof fontNames[number];
@@ -93,7 +91,6 @@ function isFontName(name: string): name is FontName {
 }
 const fontDataMap: { [key in FontName]: object } = {
   "mathjax-newcm": MathJaxNewcmFont,
-  "mathjax-stix2": MathJaxStix2Font,
 };
 
 // ----------------------------------------------------------------------
@@ -168,7 +165,7 @@ interface OutputOptions {
   }
 
   // Set MathJax Font.
-  // Available fonts: mathjax-newcm, mathjax-stix2
+  // Available fonts: mathjax-newcm
   // 
   // Since MathJax v4, fonts are provided as separate packages.
   // The font name is used by the MathJax Loader. It fetches the fontdata
