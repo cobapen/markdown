@@ -1,6 +1,10 @@
 
 # Release Log
 
+## 0.6.3 (2026-02-08)
+
+- Updated dependencies (fixes adv-table issues)
+
 ## 0.6.2 (2026-02-08)
 
 - Updated dependencies
