@@ -38,9 +38,9 @@
     "@mathjax/mathjax-stix2-font": "^4.1.0",
     "@mathjax/src": "^4.1.0",
     "highlight.js": "^11.11.1",
-    "katex": "^0.16.27",
+    "katex": "^0.16.28",
     "markdown-it": "^14.1.0",
-    "markdown-it-adv-table": "^0.1.2",
+    "markdown-it-adv-table": "^0.2.0",
     "markdown-it-anchor": "^9.2.0",
     "markdown-it-deflist": "^3.0.0",
     "markdown-it-footnote": "^4.0.0",
@@ -52,11 +52,11 @@
     "@types/katex": "^0.16.8",
     "@types/markdown-it": "^14.1.2",
     "@types/mustache": "^4.2.6",
-    "@types/node": "^25.0.10",
-    "@vitest/coverage-v8": "^4.0.17",
+    "@types/node": "^25.2.2",
+    "@vitest/coverage-v8": "^4.0.18",
     "eslint": "^9.39.2",
     "mustache": "^4.2.0",
     "typescript": "^5.9.3",
-    "vitest": "^4.0.17"
+    "vitest": "^4.0.18"
   }
 }
