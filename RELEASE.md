@@ -1,6 +1,10 @@
 
 # Release Log
 
+## 0.6.1 (2026-02-08)
+
+- Updated dependencies
+
 ## 0.6.0 (2026-01-25)
 
 - Added option to modify relaceLink handler
