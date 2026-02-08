@@ -1,6 +1,11 @@
 
 # Release Log
 
+## 0.6.2 (2026-02-08)
+
+- Updated dependencies
+- Removed dependency to mathjax-stix2-font
+
 ## 0.6.1 (2026-02-08)
 
 - Updated dependencies
