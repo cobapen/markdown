@@ -2,7 +2,7 @@
 
 This file tests math rendering.
 
-This line is an example of inline math rendering: $a + b = c$ which should use katex.
+This line is an example of inline math rendering: $a + b = c$.
 
 $$
 \int_{a}^{b} x^2 \, dx = \frac{b^3}{3} - \frac{a^3}{3}

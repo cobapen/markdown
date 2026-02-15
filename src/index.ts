@@ -1,3 +1,4 @@
+import { MathJaxEngine, Options as MathOptions } from "@cobapen/math";
 import markdownIt, { Options as MarkdownOptions } from "markdown-it";
 import advTable from "markdown-it-adv-table";
 import anchor from "markdown-it-anchor";
@@ -11,8 +12,9 @@ import { cjk_break } from "./cjk-break/cjk-break.js";
 import { fence_custom } from "./code/fence-custom.js";
 import { highlighterForMarkdownIt } from "./code/highlight.js";
 import { ReplaceHandler, replacelink } from "./link/replacelink.js";
-import { MathjaxEngine, Options as MathOptions } from "./math/mathjax.js";
 import { mdmath } from "./math/mdmath.js";
+
+await MathJaxEngine.loadExtensions();
 
 export interface Config {
   /**
@@ -59,12 +61,12 @@ const defaultOptions: Config = {
 
 export class CMarkdown {
   private readonly _config: Config;
-  private readonly _mj: MathjaxEngine;
+  private readonly _mj: MathJaxEngine;
   private readonly _md: markdownIt;
 
   constructor(option?: Options) {
     const config = { ...defaultOptions, ...option };
-    const mj = new MathjaxEngine(config.math);
+    const mj = new MathJaxEngine(config.math);
     const md = markdownIt(config.markdown);
 
     this._config = config;
@@ -104,14 +106,6 @@ export class CMarkdown {
   public render(text: string, opt?: Partial<RenderOptions>): string {
     const env = { ...opt }; // create new env per call
     return this._md.render(text, env);
-  }
-
-  /**
-   * Wait for MathJax to finish initialization.
-   * (For normal usage, this can be skipped)
-   **/
-  async waitMathInit(): Promise<void> {
-    return this._mj.waitInit();
   }
 
   /** Return the MathJax CSS. */

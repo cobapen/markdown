@@ -4,32 +4,25 @@
  * MarkdownIt extension for math equation processing
  */
 
-import katex from "katex";
+import { MathJaxEngine } from "@cobapen/math";
 import type { PluginSimple } from "markdown-it";
 import type Token from "markdown-it/lib/token.mjs";
-import { MathjaxEngine } from "./mathjax.js";
 import { math_block, math_inline } from "./mdparser.js";
 
 /**
  * Returns a MarkdownIt renderer to render inline/block TeX into HTML.
- * `KaTeX` is used for inline math, `MathJax` is used for block math.
  *
- * @param mathjax   mathjax engine (used for block math processing)
+ * @param mathjax   mathjax engine
  * @returns
  */
-function getRenderers(mathjax: MathjaxEngine) {
+function getRenderers(mathjax: MathJaxEngine) {
   function renderInlineMath(tex: string): string {
-    return katex.renderToString(tex, {
-      throwOnError: false,
-      strict: (code: string, _msg: string, _token: katex.Token) => {
-        switch (code) {
-          case "unicodeTextInMathMode":
-            return "ignore";
-          default:
-            return "warn";
-        }
-      },
-    });
+    try {
+      return mathjax.convert(tex, { inline: true });
+    } catch (err) {
+      console.error(err);
+      return tex;
+    }
   }
 
   function renderBlockMath(tex: string): string {
@@ -62,7 +55,7 @@ function getRenderers(mathjax: MathjaxEngine) {
  * @param math    mathjax Engine to use
  * @returns
  */
-export function mdmath(math: MathjaxEngine): PluginSimple {
+export function mdmath(math: MathJaxEngine): PluginSimple {
   const renderer = getRenderers(math);
 
   return (md) => {
