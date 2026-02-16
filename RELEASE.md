@@ -1,6 +1,10 @@
 
 # Release Log
 
+## 0.7.0 (2026-02-17)
+
+- Integrated @cobapen/math for math engine
+- Removed katex dependency
 
 ## 0.6.4 (2026-02-11)
 
