@@ -28,7 +28,7 @@ export interface Config {
   rewriteLink?: RewriteHandler;
 
   /** toc depth or range  */
-  tocLevel: number|[number, number];
+  tocLevel: number|number[];
 
   /** MarkdownIt options */
   markdown: Partial<MarkdownOptions>;
@@ -122,9 +122,11 @@ export class CMarkdown {
 }
 
 
-function fmtTocLevel(level: number|[number, number]): [number, number] {
+function fmtTocLevel(level: number|number[]): number[] {
   if (typeof level === "number") {
-    return [2, Math.max(2, level)];
+    // [2,3, ... level]
+    const length = Math.max(2, level) - 1;
+    return Array.from({ length }, (_, i) => i + 2);
   }
   else {
     return level;
