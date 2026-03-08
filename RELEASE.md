@@ -1,6 +1,12 @@
 
 # Release Log
 
+## 0.8.0 (2026-03-09)
+
+- Support mermaid fence
+- Support `[[_TOC_]]` syntax
+- Update rewritelink to support more HTML attrs
+
 ## 0.7.0 (2026-02-17)
 
 - Integrated @cobapen/math for math engine
