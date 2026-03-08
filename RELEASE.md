@@ -1,6 +1,10 @@
 
 # Release Log
 
+## 0.8.1 (2026-03-09)
+
+- Fix to enable mermaid syntax
+
 ## 0.8.0 (2026-03-09)
 
 - Support mermaid fence
