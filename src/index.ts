@@ -26,6 +26,9 @@ export interface Config {
   /** custom handler to rewrite links */
   rewriteLink?: RewriteHandler;
 
+  /** toc depth or range  */
+  tocLevel: number|[number, number];
+
   /** MarkdownIt options */
   markdown: Partial<MarkdownOptions>;
 
@@ -40,13 +43,14 @@ export interface RenderOptions {
 
 export type Options = Partial<Config>;
 
-const defaultOptions: Config = {
+const defaultOptions = {
   showCodeTitleByDefault: false,
   markdown: {
     html: true,
     linkify: true,
     highlight: highlighterForMarkdownIt,
   },
+  tocLevel: [2, 3],
   math: {
     output: {
       font: "mathjax-newcm"
@@ -57,7 +61,7 @@ const defaultOptions: Config = {
       },
     },
   }
-};
+} satisfies Config;
 
 export class CMarkdown {
   private readonly _config: Config;
@@ -94,6 +98,7 @@ export class CMarkdown {
       .use(mdmath(this._mj))
       .use(toc, {
         includeLevel: [2, 3],
+        includeLevel: fmtTocLevel(this._config.tocLevel),
       });
   }
 
@@ -111,5 +116,15 @@ export class CMarkdown {
   /** Return the MathJax CSS. */
   public mathcss(): string {
     return this._mj.stylesheet();
+  }
+}
+
+
+function fmtTocLevel(level: number|[number, number]): [number, number] {
+  if (typeof level === "number") {
+    return [2, Math.max(2, level)];
+  }
+  else {
+    return level;
   }
 }
