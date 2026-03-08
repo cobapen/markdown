@@ -70,7 +70,7 @@ describe("TOC plugin", () => {
         expect(html).toContain("table-of-contents");
       });
 
-      it.skip("[[_toc_]]", () => {
+      it("[[_toc_]]", () => {
         const text = mdText("[[_toc_]]");
         const html = md.render(text);
         expect(html).toContain("table-of-contents");

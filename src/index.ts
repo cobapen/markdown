@@ -99,7 +99,7 @@ export class CMarkdown {
       .use(mdmath(this._mj))
       .use(mermaidPlugin)
       .use(toc, {
-        markderPattern: /^\[\[(toc|_toc_)\]\]/im,
+        markerPattern: /^\[\[(toc|_toc_)\]\]/im,
         includeLevel: fmtTocLevel(this._config.tocLevel),
       });
   }
