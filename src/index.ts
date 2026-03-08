@@ -97,7 +97,7 @@ export class CMarkdown {
       .use(advTable)
       .use(mdmath(this._mj))
       .use(toc, {
-        includeLevel: [2, 3],
+        markderPattern: /^\[\[(toc|_toc_)\]\]/im,
         includeLevel: fmtTocLevel(this._config.tocLevel),
       });
   }
