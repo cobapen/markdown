@@ -8,11 +8,11 @@ import deflist from "markdown-it-deflist";
 import footnote from "markdown-it-footnote";
 // @ts-ignore
 import toc from "markdown-it-table-of-contents";
-import { cjk_break } from "./cjk-break/cjk-break.js";
-import { fence_custom } from "./code/fence-custom.js";
-import { highlighterForMarkdownIt } from "./code/highlight.js";
-import { ReplaceHandler, replacelink } from "./link/replacelink.js";
-import { mdmath } from "./math/mdmath.js";
+import { cjk_break } from "./plugins/cjk-break.js";
+import { fence_custom } from "./plugins/code/fence-custom.js";
+import { highlighterForMarkdownIt } from "./plugins/code/highlight.js";
+import { mdmath } from "./plugins/math/mdmath.js";
+import { RewriteHandler, rewritelink } from "./plugins/rewritelink.js";
 
 await MathJaxEngine.loadExtensions();
 
@@ -24,7 +24,7 @@ export interface Config {
   showCodeTitleByDefault: boolean;
 
   /** custom handler to rewrite links */
-  linkRewrite?: ReplaceHandler;
+  rewriteLink?: RewriteHandler;
 
   /** MarkdownIt options */
   markdown: Partial<MarkdownOptions>;
@@ -87,8 +87,8 @@ export class CMarkdown {
       .use(cjk_break)
       .use(footnote)
       .use(deflist)
-      .use(replacelink, { 
-        replace: this._config.linkRewrite,
+      .use(rewritelink, { 
+        rewrite: this._config.rewriteLink,
       })
       .use(advTable)
       .use(mdmath(this._mj))
