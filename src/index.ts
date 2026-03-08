@@ -12,6 +12,7 @@ import { cjk_break } from "./plugins/cjk-break.js";
 import { fence_custom } from "./plugins/code/fence-custom.js";
 import { highlighterForMarkdownIt } from "./plugins/code/highlight.js";
 import { mdmath } from "./plugins/math/mdmath.js";
+import { mermaidPlugin } from "./plugins/mermaid.js";
 import { RewriteHandler, rewritelink } from "./plugins/rewritelink.js";
 
 await MathJaxEngine.loadExtensions();
@@ -96,6 +97,7 @@ export class CMarkdown {
       })
       .use(advTable)
       .use(mdmath(this._mj))
+      .use(mermaidPlugin)
       .use(toc, {
         markderPattern: /^\[\[(toc|_toc_)\]\]/im,
         includeLevel: fmtTocLevel(this._config.tocLevel),
