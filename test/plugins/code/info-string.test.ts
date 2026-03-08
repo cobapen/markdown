@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { InfoString } from "../../../src/code/info-string";
+import { InfoString } from "../../../src/plugins/code/info-string";
 
 describe("InfoString infoStringParsing", () => {
   it("parse info string", () => {

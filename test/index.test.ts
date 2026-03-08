@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { CMarkdown } from "../../src/index.js";
+import { CMarkdown } from "../src/index.js";
 
 describe("Basic conversion", () => {
   it("test", () => {

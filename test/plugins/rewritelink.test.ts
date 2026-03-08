@@ -1,7 +1,7 @@
 import path from "node:path/posix";
 import { describe, expect, it, vi } from "vitest";
 import { CMarkdown } from "../../src";
-import { defaultHandler, ReplaceHandler } from "../../src/link/replacelink";
+import { defaultHandler, RewriteHandler } from "../../src/plugins/rewritelink";
 
 describe("Replace link", () => {
 
@@ -17,7 +17,7 @@ describe("Replace link", () => {
 
   it("repalace img link", () => {
     const mockReplace = vi.fn(defaultHandler);
-    const md = new CMarkdown({ linkRewrite: mockReplace });
+    const md = new CMarkdown({ rewriteLink: mockReplace });
     const text = "![Image](./hello.png)";
     md.render(text);
     expect(mockReplace).toHaveBeenCalled();
@@ -27,7 +27,7 @@ describe("Replace link", () => {
 
   it("repalace html_inline", () => {
     const mockReplace = vi.fn(defaultHandler);
-    const md = new CMarkdown({ linkRewrite: mockReplace });
+    const md = new CMarkdown({ rewriteLink: mockReplace });
     const text = `
 # Title
 <a href=\"./test.md\">link</a>`;
@@ -40,7 +40,7 @@ describe("Replace link", () => {
 
   it("replace html block", () => {
     const mockReplace = vi.fn(defaultHandler);
-    const md = new CMarkdown({ linkRewrite: mockReplace });
+    const md = new CMarkdown({ rewriteLink: mockReplace });
     const text = `
 <head>
   <link rel="stylesheet" href="./style.css">
@@ -63,7 +63,7 @@ describe("Replace link", () => {
     const cwd = __dirname;
     const inputFile = path.join(cwd, "docs", "example.md");
 
-    const mockReplace = vi.fn<ReplaceHandler>((link, _env, _token) => {
+    const mockReplace = vi.fn<RewriteHandler>((link, _env, _token) => {
       
       // Return relative path from the file to the link, under cwd.
       if (link.startsWith("@/")) {
@@ -76,7 +76,7 @@ describe("Replace link", () => {
       }
       return link;
     });
-    const md = new CMarkdown({ linkRewrite: mockReplace });
+    const md = new CMarkdown({ rewriteLink: mockReplace });
     const text = "[Link](@/style.css)";
     const html = md.render(text, {
       file: inputFile,

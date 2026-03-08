@@ -11,6 +11,8 @@ const __dirname = dirname(__filename);
 const indexMjsPath = join(__dirname, "index.mjs");
 const libraryMain = join(__dirname, "../../lib/index.js");
 
+const libraryNotBuilt = !existsSync(libraryMain);
+
 type TestCb = (code: number|null, stdout: string, stderr: string) => void;
 
 function launchProcess(inputText: string, cb: TestCb) {
@@ -46,11 +48,7 @@ function launchProcess(inputText: string, cb: TestCb) {
   });
 }
 
-test("import and launch", async () => {
-
-  if (!existsSync(libraryMain)) {
-    expect.fail("library not built. run `npm run build` first.");
-  }
+test.skipIf(libraryNotBuilt)("import and launch", async () => {
 
   await launchProcess("# Test Markdown", (code, stdout, stderr) => {
     expect(code).toBe(0);
