@@ -1,6 +1,6 @@
 import markdownIt from "markdown-it";
 import { describe, expect, it } from "vitest";
-import { mermaidPlugin } from "../../src/plugins/mermaid";
+import { mermaidPlugin } from "../../src/plugins/mermaid.js";
 
 describe("Mermaid plugin", () => {
   it("renders mermaid fences as mermaid blocks", () => {

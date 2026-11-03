@@ -1,9 +1,7 @@
 /**
  * Mermaid plugin
  */
-import type { Options as MdItOptions, PluginSimple } from "markdown-it/lib/index.mjs";
-import type Renderer from "markdown-it/lib/renderer.mjs";
-import type Token from "markdown-it/lib/token.mjs";
+import type { MarkdownIt, MarkdownItOptions, Renderer, Token } from "markdown-it";
 
 function hashCode(str: string): string {
   let hash = 0;
@@ -28,8 +26,8 @@ function mermaidChart(id: string, code: string): string {
   return `<pre id="${id}" class="mermaid">${code}</pre>`;
 };
 
-export function mermaidPlugin(): PluginSimple {
-  return (md) => {
+export function mermaidPlugin() {
+  return (md: MarkdownIt) => {
     const original = md.renderer.rules.fence ||
         function (tokens, idx, options, _env, self) {
           return self.renderToken(tokens, idx, options);
@@ -38,7 +36,7 @@ export function mermaidPlugin(): PluginSimple {
     md.renderer.rules.fence = (
       tokens: Token[],
       idx: number,
-      options: MdItOptions,
+      options: Required<MarkdownItOptions>,
       env: any,
       self: Renderer
     ) => {
