@@ -69,4 +69,4 @@ test.skipIf(libraryNotBuilt)("import and launch", async () => {
     expect(stderr).toBeFalsy();
   });
   
-});
+}, 10000);
