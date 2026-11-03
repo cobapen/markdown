@@ -1,10 +1,8 @@
-import { Options } from "markdown-it/index.mjs";
-import { escapeHtml, unescapeAll } from "markdown-it/lib/common/utils.mjs";
-import Renderer from "markdown-it/lib/renderer.mjs";
-import Token from "markdown-it/lib/token.mjs";
+import type { Env, MarkdownItOptions, Renderer, RendererRule, Token } from "markdown-it";
+import { escapeHtml, unescapeAll } from "./escape.js";
 import { InfoString } from "./info-string.js";
 
-interface Env {
+interface PluginEnv extends Env {
   showCodeTitleByDefault?: boolean;
 }
 
@@ -13,7 +11,7 @@ interface Env {
  * 
  * see: markdown-it/lib/renderer.mjs
  */
-export function fence_custom(tokens: Token[], idx: number, options: Options, env: Env, slf: Renderer) {
+export const fence_custom: RendererRule = (tokens: Token[], idx: number, options: MarkdownItOptions, env: PluginEnv|undefined, rd: Renderer) => {
   const token = tokens[idx];
   const info_str = token.info ? unescapeAll(token.info).trim() : "";
   
@@ -53,14 +51,15 @@ export function fence_custom(tokens: Token[], idx: number, options: Options, env
 
 
     if (info.title.length > 0) {
-      const style = (env.showCodeTitleByDefault === true)
+      const style = (env?.showCodeTitleByDefault === true)
         ? "" 
         : " style=\"visibility:hidden;\"";
-      return `<pre><code${slf.renderAttrs(tmpToken)}>${highlighted}</code><span class="title"${style}>${info.title}</span></pre>\n`;
+      return `<pre><code${rd.renderAttrs(tmpToken)}>${highlighted}</code><span class="title"${style}>${info.title}</span></pre>\n`;
     }
 
-    return `<pre><code${slf.renderAttrs(tmpToken)}>${highlighted}</code></pre>\n`;
+    return `<pre><code${rd.renderAttrs(tmpToken)}>${highlighted}</code></pre>\n`;
   }
 
-  return `<pre><code${slf.renderAttrs(token)}>${highlighted}</code></pre>\n`;
-}
+  return `<pre><code${rd.renderAttrs(token)}>${highlighted}</code></pre>\n`;
+};
+

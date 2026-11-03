@@ -4,8 +4,7 @@
  * provides methods to parse MarkdownIt token stream and extract math equations.
  */
 
-import type StateBlock from "markdown-it/lib/rules_block/state_block.mjs";
-import type StateInline from "markdown-it/lib/rules_inline/state_inline.mjs";
+import type { StateBlock, StateInline } from "markdown-it";
 
 /**
  * Tests if potential opening or closing delimieter
@@ -36,7 +35,7 @@ function isValidDelim(state: StateInline, pos: number) {
     can_open: can_open,
     can_close: can_close,
   };
-}
+};
 
 export function math_inline(state: StateInline, silent: boolean) {
   let match, token, res, pos;

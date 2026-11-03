@@ -1,5 +1,5 @@
 import { MathJaxEngine, Options as MathOptions } from "@cobapen/math";
-import markdownIt, { Options as MarkdownOptions } from "markdown-it";
+import markdownIt, { MarkdownIt , MarkdownItOptions } from "markdown-it";
 import advTable from "markdown-it-adv-table";
 import anchor from "markdown-it-anchor";
 // @ts-ignore
@@ -31,7 +31,7 @@ export interface Config {
   tocLevel: number|number[];
 
   /** MarkdownIt options */
-  markdown: Partial<MarkdownOptions>;
+  markdown: Partial<MarkdownItOptions>;
 
   /** MathJax options */
   math: Partial<MathOptions>;
@@ -67,7 +67,7 @@ const defaultOptions = {
 export class CMarkdown {
   private readonly _config: Config;
   private readonly _mj: MathJaxEngine;
-  private readonly _md: markdownIt;
+  private readonly _md: MarkdownIt;
 
   constructor(option?: Options) {
     const config = { ...defaultOptions, ...option };
@@ -86,7 +86,7 @@ export class CMarkdown {
    * 
    * @param md The instance
    */
-  public setup(md: markdownIt) {
+  public setup(md: MarkdownIt) {
     md.renderer.rules.fence = fence_custom;
     md.use(anchor)
       .use(cjk_break)

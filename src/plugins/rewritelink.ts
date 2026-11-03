@@ -1,20 +1,15 @@
-/**
- * Rewrite Link
- * 
- * Modifies links in markdown
- */
-import type { PluginWithOptions } from "markdown-it";
-import type { RuleCore } from "markdown-it/lib/parser_core.mjs";
-import type StateCore from "markdown-it/lib/rules_core/state_core.mjs";
-import type Token from "markdown-it/lib/token.mjs";
+import type { MarkdownIt, StateCore, Token } from "markdown-it";
 
-export type RewriteHandler = (link: string, env: any, token: Token) => string;
+// `RuleCore` is not exported, since v15
+type RuleCore = Parameters<typeof MarkdownIt.prototype.core.ruler.after>[2];
+
+export type RewriteHandler = (link: string, env: unknown, token: Token) => string;
 
 export interface Options {
-  rewrite: RewriteHandler;
+  rewrite?: RewriteHandler;
 }
 
-export function defaultHandler(link: string, _env: any, _token: Token): string {
+export function defaultHandler(link: string, _env: unknown, _token: Token): string {
   if (!link.startsWith("http") && link.endsWith(".md")) {
     return link.replace(/\.md$/, ".html");
   } else {
@@ -22,15 +17,15 @@ export function defaultHandler(link: string, _env: any, _token: Token): string {
   }
 }
 
-function replaceAttr(token: Token, attrName: string, handler: RewriteHandler, env: any) {
+function replaceAttr(token: Token, attrName: string, handler: RewriteHandler, env: unknown) {
   token.attrs?.forEach(attr => {
     if (attr[0] === attrName) {
-      attr[1] = handler(attr[1], env, token);
+      attr[1] = handler(attr[1].toString(), env, token);
     }
   });
 }
 
-function replaceHtmlAttr(token: Token, handler: RewriteHandler, env: any) {
+function replaceHtmlAttr(token: Token, handler: RewriteHandler, env: unknown) {
   // List of attributes that may contain URIs.
   // https://html.spec.whatwg.org/multipage/indices.html#attributes-1
   // https://stackoverflow.com/questions/2725156/
@@ -89,7 +84,7 @@ function getHandler(option?: Options): RuleCore {
 }
 
 
-export const rewritelink: PluginWithOptions<Options> = (md, option) => {
+export function rewriteLink(md: MarkdownIt, option?: Options) {
   const handler = getHandler(option);
   md.core.ruler.after("linkify", "rewrite_link", handler);
 };

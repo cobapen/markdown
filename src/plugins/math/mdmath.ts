@@ -4,9 +4,8 @@
  * MarkdownIt extension for math equation processing
  */
 
-import { MathJaxEngine } from "@cobapen/math";
-import type { PluginSimple } from "markdown-it";
-import type Token from "markdown-it/lib/token.mjs";
+import type { MathJaxEngine } from "@cobapen/math";
+import type { MarkdownIt, Token } from "markdown-it";
 import { math_block, math_inline } from "./mdparser.js";
 
 /**
@@ -55,10 +54,10 @@ function getRenderers(mathjax: MathJaxEngine) {
  * @param math    mathjax Engine to use
  * @returns
  */
-export function mdmath(math: MathJaxEngine): PluginSimple {
+export function mdmath(math: MathJaxEngine) {
   const renderer = getRenderers(math);
 
-  return (md) => {
+  return (md: MarkdownIt) => {
     md.inline.ruler.after("escape", "math_inline", math_inline);
     md.block.ruler.after("blockquote", "math_block", math_block, {
       alt: ["paragraph", "reference", "blockquote", "list"],

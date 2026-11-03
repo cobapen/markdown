@@ -2,7 +2,7 @@
 /// https://github.com/markdown-it/markdown-it-cjk-breaks
 ///
 /// Modified and ported to TS by Yamavol for bugfix.
-import type { PluginSimple, StateCore, Token  } from "markdown-it/index.js";
+import type { MarkdownIt, StateCore, Token  } from "markdown-it";
 import { getEAWOfCodePoint } from "meaw";
 
 function is_surrogate (c1: number, c2: number) {
@@ -77,7 +77,7 @@ function handler(state: StateCore) {
   }
 }
 
-export const cjk_break: PluginSimple = (md) => {
+export function cjk_break(md: MarkdownIt) {
   md.core.ruler.push("cjk_breaks", handler);
 };
 
