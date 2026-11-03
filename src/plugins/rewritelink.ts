@@ -89,4 +89,4 @@ export function rewriteLink(md: MarkdownIt, option?: Options) {
   md.core.ruler.after("linkify", "rewrite_link", handler);
 };
 
-export default rewritelink;
+export default rewriteLink;

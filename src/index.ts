@@ -13,7 +13,7 @@ import { fence_custom } from "./plugins/code/fence-custom.js";
 import { highlighterForMarkdownIt } from "./plugins/code/highlight.js";
 import { mdmath } from "./plugins/math/mdmath.js";
 import { mermaidPlugin } from "./plugins/mermaid.js";
-import { RewriteHandler, rewritelink } from "./plugins/rewritelink.js";
+import { RewriteHandler, rewriteLink } from "./plugins/rewritelink.js";
 
 await MathJaxEngine.loadExtensions();
 
@@ -92,7 +92,7 @@ export class CMarkdown {
       .use(cjk_break)
       .use(footnote)
       .use(deflist)
-      .use(rewritelink, { 
+      .use(rewriteLink, { 
         rewrite: this._config.rewriteLink,
       })
       .use(advTable)
