@@ -1816,12 +1816,12 @@ mjx-container[jax="CHTML"] > mjx-math.NCM-N[breakable] > * {
 }
 
 mjx-stretchy-v.mjx-c7C > mjx-ext > mjx-spacer {
-  margin-top: -0.617em;
+  margin-top: 0.215em;
 }
 
 mjx-stretchy-v.mjx-c7C > mjx-ext {
   width: 0.333em;
-  line-height: 1.739em;
+  line-height: 1.664em;
 }
 
 mjx-c.mjx-c31 {
@@ -2024,7 +2024,7 @@ mjx-c.mjx-c2207 {
   padding: 0.683em 0.833em 0.033em 0;
 }
 
-mjx-c.mjx-c20D7 {
+mjx-c.mjx-c20D7:not([class*="NCM-"]) {
   padding: 0.711em 0 0 0;
   width: 0.528em;
   margin-left: -0.528em;
