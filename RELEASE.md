@@ -1,6 +1,11 @@
 
 # Release Log
 
+## 0.8.3 (2026-11-04)
+
+- Update dependencies
+- Fix plugins for mdit v15
+
 ## 0.8.2 (2026-03-09)
 
 - Fix `[[_TOC_]]` not working
